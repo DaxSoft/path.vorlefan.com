@@ -1,0 +1,46 @@
+# Stream
+
+```ts
+new PathRoute().stream();
+```
+
+This class helps you to write and read files using the Node's Stream function.
+
+## .read
+
+This function reads a file asynchronously using `fs.createReadStream` and returns the content as an string.
+If the file cannot be read, the function returns undefined.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the file to be read
+-   `{(chunk:string|Buffer,data:string|Buffer): void|undefined} onData`: callback function that interacts with each chunk of the file
+
+**Return Values**
+
+-   `{undefined}`: reading fails
+-   `{String}`: if reading is success
+
+```ts
+const route = new PathRoute();
+const content = await route.stream().read(filepath);
+```
+
+## .write
+
+This function writes a file asynchronously using `fs.createWriteStream` and returns the content as an boolean, indicating
+if the file has been written with success or not.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the json file
+-   `{String} data`: the data to be saved
+
+**Return Values**
+
+-   `{boolean}`: true is success, othewrise is failure
+
+```ts
+const route = new PathRoute();
+const content = await route.stream().write(filepath, { x: 1, y: 2 });
+```

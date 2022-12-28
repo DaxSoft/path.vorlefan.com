@@ -1,0 +1,49 @@
+# JSON
+
+```ts
+new PathRoute().json();
+```
+
+This class helps you with functions to handle json files, such as to read and to write.
+
+## .read
+
+This function reads a JSON file asynchronously and returns the content as an object.
+If the file cannot be read, the function returns undefined.
+The return type of the function can be specified using the `#.read<T>` syntax,
+where `T` is the desired type of the returned object. By default, the return type is
+`Record<string, any>`, which allows the returned object to have any properties.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the json file
+
+**Return Values**
+
+-   `{undefined}`: reading fails
+-   `{<T = Record<string, any>>}`: by default the type is `Record<string, any>`
+
+```ts
+const route = new PathRoute();
+const content = await route.json().read<Array[]>(filepath);
+```
+
+## .write
+
+This function writes a JSON file asynchronously and returns the content as an boolean, indicating
+if the file has been written with success or not.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the json file
+-   `{any} data`: the data to be saved using `JSON.stringify`
+-   `{boolean} force = true`: forces the file to be written even if it already exists
+
+**Return Values**
+
+-   `{boolean}`: true is success, othewrise is failure
+
+```ts
+const route = new PathRoute();
+await route.json().write(filepath, { x: 1, y: 2 });
+```

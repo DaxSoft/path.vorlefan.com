@@ -1,0 +1,45 @@
+# File
+
+```ts
+new PathRoute().io();
+```
+
+This class helps you with functions to handle files, be it writing, copying, deleting and so on.
+
+## .isFileValid
+
+This function reads a file asynchronously and returns the content as an boolean, verifying
+if the file is accessible or not.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the json file
+-   `{['R_OK', 'F_OK', 'W_OK']} modes =  ['R_OK', 'F_OK']`: the constants that will be used to verify the file, check out [here](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_fspromises_access_path_mode)
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const isFileValid = await route.io().isFileValid(filepeath);
+```
+
+## .copy
+
+This function reads a file asynchronously and returns the content as an boolean, verifying
+if the file is accessible or not.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the json file
+-   `{['R_OK', 'F_OK', 'W_OK']} modes =  ['R_OK', 'F_OK']`: the constants that will be used to verify the file, check out [here](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_fspromises_access_path_mode)
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const isFileValid = await route.io().isFileValid(filepeath);
+```
