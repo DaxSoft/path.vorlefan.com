@@ -1,0 +1,15 @@
+{
+    "*": {
+        "type": "page"
+    },
+    "index": {
+        "title": "Home",
+        "hidden": false,
+        "theme": {
+            "layout": "raw"
+        }
+    },
+    "patterns": {
+        "title": "PathRoute"
+    }
+}

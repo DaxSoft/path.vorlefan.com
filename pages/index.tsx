@@ -8,6 +8,8 @@ import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 :--------------------------------------------------------------------------
 */
 
+import { default as PageComponent } from '$/client/pages/homepage/dynamic';
+
 /*
 :--------------------------------------------------------------------------
 : Page Component
@@ -20,10 +22,9 @@ const Page = ({}: PageProps) => {
     return (
         <div>
             <Header>
-                <title>
-                    O desejo pelo conhecimento molda ao homem | Vorlefan
-                </title>
+                <title>PathRoute | Vorlefan</title>
             </Header>
+            <PageComponent />
         </div>
     );
 };
