@@ -27,13 +27,12 @@ const isFileValid = await route.io().isFileValid(filepeath);
 
 ## .copy
 
-This function reads a file asynchronously and returns the content as an boolean, verifying
-if the file is accessible or not.
+This function reads a file asynchronously and copy into a new file
 
 **Paramaters**
 
--   `{String} filepath`: the filepath of the json file
--   `{['R_OK', 'F_OK', 'W_OK']} modes =  ['R_OK', 'F_OK']`: the constants that will be used to verify the file, check out [here](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html#fs_fspromises_access_path_mode)
+-   `{String} sourceFilepath`: the origin filepath of the file to be cloned
+-   `{String} targetFilepath`: the destination of the new file
 
 **Return Values**
 
@@ -41,5 +40,154 @@ if the file is accessible or not.
 
 ```ts
 const route = new PathRoute();
-const isFileValid = await route.io().isFileValid(filepeath);
+const hasCloned = await route.io().copy(source, destination);
+```
+
+## .read
+
+This function reads a file asynchronously and returns it contents as a string.
+If the file cannot be read, the function returns undefined.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the file to be read
+-   `{BufferEncoding} encoding = utf-8`: the encoding
+
+**Return Values**
+
+-   `{string}`: if the reading is success
+-   `{undefined}`: if the reading is a failure
+
+```ts
+const route = new PathRoute();
+const content = await route.io().read(filepath);
+```
+
+## .write
+
+This function writes a file asynchronously and returns a boolean.
+If the file cannot be read, the function returns false.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the file to be read
+-   `{string} data`: data to be saved
+-   `{BufferEncoding} encoding = utf-8`: the encoding
+-   `{boolean} force = true`: forces the file to be written even if it already exists
+
+**Return Values**
+
+-   `{boolean}`: true is success, othewrise is failure
+
+```ts
+const route = new PathRoute();
+const content = await route.io().write(filepath, 'teste');
+```
+
+## .remove
+
+This function removes a file asynchronously and returns a boolean.
+If the file cannot be read, the function returns false.
+
+**Paramaters**
+
+-   `{String} filepath`: the filepath of the file to be removed
+
+**Return Values**
+
+-   `{boolean}`: true is success, othewrise is failure
+
+```ts
+const route = new PathRoute();
+const removed = await route.io().remove(filepath);
+```
+
+## .isFolderValid
+
+This function reads a folder and returns the content as an boolean, verifying
+if the folder is valid or not.
+
+**Paramaters**
+
+-   `{String} folderpath`: the folder path
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const isFolderValid = await route.io().isFolderValid(filepeath);
+```
+
+## .createFolder
+
+This function creates a folder and returns the content as an boolean, verifying
+if the folder has been created or not
+
+**Paramaters**
+
+-   `{String} folderpath`: the folder path
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const createFolder = await route.io().createFolder(filepeath);
+```
+
+## .removeFolder
+
+This function removes a folder and returns a boolean.
+If the folder cannot be removed, the function returns false.
+
+**Paramaters**
+
+-   `{String} folderpath`: the folder path of the file to be removed
+
+**Return Values**
+
+-   `{boolean}`: true is success, othewrise is failure
+
+```ts
+const route = new PathRoute();
+const removed = await route.io().removeFolder(filepath);
+```
+
+## .exists
+
+This function checks if a folder or file exists and returns the content as an boolean, verifying
+if it is valid or not.
+
+**Paramaters**
+
+-   `{String} filepath`: the path
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const exists = await route.io().exists(filepeath);
+```
+
+## .isDirectory
+
+This function checks if a path is directory or not and returns the content as an boolean, verifying
+if it is valid or not.
+
+**Paramaters**
+
+-   `{String} folderpath`: the path
+
+**Return Values**
+
+-   `{boolean}`: true is okay, otherwise is failure
+
+```ts
+const route = new PathRoute();
+const folderpath = await route.io().isDirectory(filepeath);
 ```
