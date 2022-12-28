@@ -1,11 +1,13 @@
 const theme = {
   titleSuffix: " | PathRoute - Vorlefan",
-  search: true,
   unstable_flexsearch: true,
-  floatTOC: true,
+  toc: {
+    float:true
+  },
   font: false,
-  github: "https://github.com/DaxSoft/path",
-  projectLink: "https://github.com/DaxSoft/path",
+  project: {
+    link: "https://github.com/DaxSoft/path",
+  },
   logo: () => (
     <>
       <img
@@ -68,7 +70,9 @@ const theme = {
     );
   },
   darkMode: true,
-  footerText: `${new Date().getFullYear()} © VORLEFAN`,
+  footer: {
+    text: `${new Date().getFullYear()} © VORLEFAN`
+  },
   nextThemes: {
     defaultTheme: "dark",
   },

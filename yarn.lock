@@ -874,6 +874,11 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
+"@vorlefan/path@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vorlefan/path/-/path-1.8.3.tgz#0011b2b80a046134fe49a503d360e0576a09dccf"
+  integrity sha512-WziRvxQLw7XBnynw3bJ+1iUAHBwbqx8gFlxDLnAv8dSfiMcV3rdb2xWsVreXD5gonQWoB5VDhzxDER0U9o2A3w==
+
 acorn-jsx@^5.0.0:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"

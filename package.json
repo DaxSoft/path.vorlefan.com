@@ -19,6 +19,7 @@
         "@mantine/hooks": "^5.5.5",
         "@mui/material": "^5.11.2",
         "@mui/styles": "^5.10.9",
+        "@vorlefan/path": "^1.8.3",
         "autoprefixer": "^10.4.13",
         "clean-css": "^5.3.1",
         "date-fns": "^2.29.3",

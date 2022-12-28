@@ -1,11 +1,56 @@
 import Link from 'next/link';
 
-## Introduction
+# PathRoute
 
-This website is related to the [FrontendMasters workshop on JavaScript Patterns](https://frontendmasters.com/courses/tour-js-patterns/), which is split up into four parts:
+This npm package gives you the ability to easily access and manage the file paths of your project.
+Our core function is to provide a simple and intuitive way to navigate the folders and files within
+your project, making it easier to organize and maintain your codebase.
+Whether you're working on a small project or a large-scale application,
+this package can save you time and hassle by streamlining your file management workflow.
+Try it out and see how it can benefit your development process.
 
-The content is based on [Patterns.dev](https://www.patterns.dev) - a free online resource on design patterns and component patterns for building powerful web apps with vanilla JavaScript and React.
+## Installation
 
----
+Inside your Node project directory, run the following:
 
-The patterns covered on this website and in the workshop can guide you when facing a problem other developers have encountered many times before, but are not a blunt tool for jamming into every scenario. The goal is to raise awareness to certain patterns, the problems they solve, and their implementation.
+`shell
+yarn add @vorlefan/path
+`
+
+## Quick Start
+
+It is recommended that you create a new file at the source folder of your project where your code
+is located, be it 'src' or whatever.
+
+Example, create a new file named: `src/path.ts`
+
+```ts
+import { PathRoute } from '@vorlefan/path';
+
+// creates a default pathRoute
+const ProjectRoute = new PathRoute();
+ProjectRoute.add('root', __dirname);
+
+export { ProjectRoute };
+```
+
+Now you can start to interact over your folder and files from the project, example:
+
+```ts
+// creates a new folder named the version of your package.json and creates a new file named the name from
+// package.json and fills with the current Date
+
+const packageJson = await ProjectRoute.json().read(
+    ProjectRoute.plug('root', 'package.json') || ''
+);
+if (packageJson) {
+    const name = packageJson.name.replace(/@|\//gm, '_');
+    await ProjectRoute.inject('packageJsonVersion', 'root', packageJson.version)
+        .io()
+        .write(
+            ProjectRoute.plug('packageJsonVersion', name) || '',
+            new Date().toDateString(),
+            true
+        );
+}
+```
