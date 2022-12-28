@@ -1,6 +1,25 @@
 {
-  "name": "path.vorlefan.com",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+    "name": "path.vorlefan.com",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "@mui/material": "^5.11.2",
+        "next": "^13.1.1",
+        "nextra": "^2.0.1",
+        "nextra-theme-docs": "^2.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "@emotion/cache": "^11.10.3",
+        "@emotion/react": "^11.10.4",
+        "@emotion/server": "^11.10.0",
+        "@emotion/styled": "^11.10.4",
+        "@mantine/hooks": "^5.5.5",
+        "@mui/styles": "^5.10.9",
+        "autoprefixer": "^10.4.13",
+        "clean-css": "^5.3.1",
+        "date-fns": "^2.29.3",
+        "reactflow": "^11.3.1",
+        "zustand": "^4.1.4"
+    }
 }

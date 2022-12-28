@@ -1,0 +1,105 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "ES2019",
+      "ES2020",
+      "ES2021",
+      "ES2022",
+      "ScriptHost"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": false,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./types",
+      "./@types",
+      "node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "$/client/*": [
+        "./client/*"
+      ],
+      "$/components/*": [
+        "./client/components/*"
+      ],
+      "$/data/*": [
+        "./client/data/*"
+      ],
+      "$/hooks/*": [
+        "./client/hooks/*"
+      ],
+      "$/lib/*": [
+        "./client/libraries/*"
+      ],
+      "$/styles/*": [
+        "./client/styles/*"
+      ],
+      "$/assets/*": [
+        "./client/assets/*"
+      ],
+      "$/controller/*": [
+        "./client/controller/*"
+      ],
+      "$/types/*": [
+        "./client/types/*"
+      ],
+      "$/pages/*": [
+        "./client/pages/*"
+      ],
+      "$/config/*": [
+        "./client/config/*"
+      ]
+    },
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "nextra-theme-docs/**/*.tsx",
+    "nextra-theme-docs/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "tests",
+    "coverage",
+    ".next",
+    "dist",
+    "out",
+    "next.config.js"
+  ]
+}
