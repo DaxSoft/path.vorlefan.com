@@ -2,12 +2,18 @@ const theme = {
   titleSuffix: " | PathRoute - Vorlefan",
   unstable_flexsearch: true,
   toc: {
-    float:true
+    float:true,
   },
   font: false,
   project: {
     link: "https://github.com/DaxSoft/path",
     github: "https://github.com/DaxSoft/path",
+  },
+  editLink: {
+    component: null
+  },
+  feedback: {
+    content: null
   },
   logo: () => (
     <>
@@ -77,5 +83,6 @@ const theme = {
   nextThemes: {
     defaultTheme: "dark",
   },
+  primaryHue: 38
 };
 export default theme;
