@@ -1,5 +1,6 @@
 import React from 'react';
-import { Root, Est, Copy } from './styles';
+import { controllerFile } from '../controller/file';
+import { Root } from './styles';
 
 // ------------------------------------------------------------------
 // | [Component]
@@ -8,14 +9,20 @@ import { Root, Est, Copy } from './styles';
 export type ComponentProps = any;
 
 const Component = ({}: ComponentProps): React.ReactElement => {
+    const getFoldersAndFiles = controllerFile((s) => s.getFoldersAndFiles);
+    const clean = controllerFile((s) => s.clean);
+    const data = controllerFile((s) => s.data);
+
+    React.useEffect(() => {
+        clean();
+        getFoldersAndFiles();
+    }, []);
+
+    console.log(data);
+
     return (
         <React.Fragment>
-            <Root>
-                <Est variant="caption">Est 2016 ~</Est>
-                <Copy variant="caption">
-                    &copy; VORLEFAN DESENVOLVIMENTO LTDA - 46.216.078/0001-60
-                </Copy>
-            </Root>
+            <Root></Root>
         </React.Fragment>
     );
 };
