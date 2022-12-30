@@ -25,7 +25,10 @@ const nextConfig = {
         domains: ['localhost', '*','vorlefan.com'],
         formats: ['image/avif', 'image/webp'],
         
-    },
+    }, 
+    serverRuntimeConfig: {
+        PROJECT_ROOT: __dirname
+    }
 };
 
 
