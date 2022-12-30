@@ -12,23 +12,12 @@
         "clean": "rimraf .next .turbo"
     },
     "dependencies": {
-        "@emotion/cache": "^11.10.3",
-        "@emotion/react": "^11.10.4",
-        "@emotion/server": "^11.10.0",
-        "@emotion/styled": "^11.10.4",
-        "@mantine/hooks": "^5.5.5",
-        "@mui/material": "^5.11.2",
-        "@mui/styles": "^5.10.9",
         "@vorlefan/path": "^1.8.3",
-        "autoprefixer": "^10.4.13",
-        "clean-css": "^5.3.1",
-        "date-fns": "^2.29.3",
         "next": "^13.1.1",
         "nextra": "^2.0.1",
         "nextra-theme-docs": "^2.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "reactflow": "^11.3.1",
         "zustand": "^4.1.4"
     },
     "devDependencies": {
