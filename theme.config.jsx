@@ -7,6 +7,7 @@ const theme = {
   font: false,
   project: {
     link: "https://github.com/DaxSoft/path",
+    github: "https://github.com/DaxSoft/path",
   },
   logo: () => (
     <>

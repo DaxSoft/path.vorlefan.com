@@ -5,3 +5,742 @@ new PathRoute();
 ```
 
 The class that will handles every method of this package, in which you can access the instances of File, Json and Stream.
+
+## .stream
+
+This function access the [stream methods](/docs/api/stream)
+
+**Return Values**
+
+-   `{PathStreamManager}`: Check out the documentation
+
+```ts
+const route = new PathRoute();
+const stream = route.stream();
+```
+
+## .io
+
+This function access the [io methods](/docs/api/io)
+
+**Return Values**
+
+-   `{PathFileManager}`: Check out the documentation
+
+```ts
+const route = new PathRoute();
+const io = route.io();
+```
+
+## .json
+
+This function access the [json methods](/docs/api/json)
+
+**Return Values**
+
+-   `{PathJsonManager}`: Check out the documentation
+
+```ts
+const route = new PathRoute();
+const json = route.json();
+```
+
+## .routes
+
+This function returns all routes of the class in a Array format
+
+**Paramaters**
+
+**Return Values**
+
+-   `{RoutesDataContext[]}`: Check the type below
+
+```ts
+export type RoutesDataContext = {
+    routeName: string;
+    routePath: string;
+};
+
+const route = new PathRoute();
+const routes = route.routes();
+```
+
+## .size
+
+This function returns the length of the routes Array
+
+**Paramaters**
+
+**Return Values**
+
+-   `{number}`: length of the route
+
+```ts
+const route = new PathRoute();
+const length = route.size();
+```
+
+## .add
+
+With this function you can create a new route if it has not been registred already. The logic here is to assign a
+key to be name the route and a path to be the value.
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+-   `{String} routePath`: absolute path to be the route value
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+route.add('source', __dirname);
+```
+
+## .edit
+
+With this function you can edit a route that has been already created, you can change both name and path
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+-   `{String} routePath`: absolute path to be the route value
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+route.add('source', __dirname).edit('source', '../source');
+```
+
+## .has
+
+With this function you can check if a route exists or not
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+
+**Return Values**
+
+-   `{boolean}`: true if exists, otherwise false
+
+```ts
+const route = new PathRoute();
+route.has('source');
+```
+
+## .get
+
+With this function you get a route and returns the content as a object contain the routeName and routePath.
+If the route do not exists returns undefined.
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+
+**Return Values**
+
+-   `{RoutesDataContext|undefined}`: RoutesDataContext if exists, otherwise undefined
+
+```ts
+export type RoutesDataContext = {
+    routeName: string;
+    routePath: string;
+};
+
+const route = new PathRoute();
+route.get('source')?.routePath;
+```
+
+## .remove
+
+With this function you can remove a route that has been already created
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+route.remove('source');
+```
+
+## .alias
+
+With this function you can clone a route and then rename it into a new other. It will inherit the path from the cloned route
+
+**Paramaters**
+
+-   `{String} aliasRouteName`: key route name of the new route
+-   `{String} routeName`: key route name of source route
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+route.add('source', __dirname).alias('src', 'source');
+```
+
+## .join
+
+With this function you can create a new route following the path from a source route as base, it will
+use the `path.join` to join the key route name of the new route or using the third paramater that is optional.
+
+**Paramaters**
+
+-   `{String} newRouteName`: key route name of the new route
+-   `{String} referenceRouteName`: key route name of source route
+-   `{String|undefined} folder`: if you don't want to use the newRouteName as the new folder to be joined, then
+    you canse this paramater
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+
+// the routePath of 'src' will be: '../example/src'
+route.add('source', '../example').join('src', 'source');
+
+// the routePath of 'x' will be: '../example/paramater'
+route.add('source', '../example').join('x', 'source', 'paramater');
+```
+
+## .inject
+
+It works as the same as `.join` however it will create a new folder if it not exists
+
+**Paramaters**
+
+-   `{String} newRouteName`: key route name of the new route
+-   `{String} referenceRouteName`: key route name of source route
+-   `{String|undefined} folder`: if you don't want to use the newRouteName as the new folder to be joined, then
+    you canse this paramater
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+
+// the routePath of 'src' will be: '../example/src'
+// the 'src' directory will be created if not exists
+route.add('source', '../example').inject('src', 'source');
+
+// the routePath of 'x' will be: '../example/paramater'
+// the 'paramater' directory will be created if not exists
+route.add('source', '../example').inject('x', 'source', 'paramater');
+```
+
+## .plug
+
+With this function you can join a routePath from a route with another path, it will use the `path.join`.
+However it is required that the route exists to works, otherwise will return undefined.
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+-   `{String} filepath`: the path to be joined
+
+**Return Values**
+
+-   `{String|undefined}`: string with path joined otherwise undefined
+
+```ts
+const route = new PathRoute();
+
+// it will returns '../example/joined.json'
+route.add('source', '../example').plug('source', 'joined.json');
+```
+
+## .sanitize
+
+With this function you sanitize the filepath of a route
+
+**Paramaters**
+
+-   `{String} routeName`: key route name
+
+**Return Values**
+
+-   `{String|undefined}`: string with path sanitized otherwise undefined
+
+```ts
+const route = new PathRoute();
+
+route.add('source', '../example').sanitize('source');
+```
+
+## .endsWith
+
+With this function you get the basename, i.e, last folder/filename of a absolute path
+
+**Paramaters**
+
+-   `{String} filepath`: absolute path
+
+**Return Values**
+
+-   `{String}`: string with the last folder or filename
+
+```ts
+const route = new PathRoute();
+
+// it will returns 'last'
+route.endsWith('source/last');
+```
+
+## .backward
+
+With this function you go backward in the path using `../`, it requires the key name of the route.
+
+**Paramaters**
+
+-   `{String} routeName`: key name of the route
+-   `{number} level=1`: the many times will be used `../`
+
+**Return Values**
+
+-   `{String|undefined}`: string with path otherwise undefined
+
+```ts
+const route = new PathRoute();
+
+// it will returns '../test/x'
+route.add('example', '../test/x/y/z').backward('example', 2);
+```
+
+## .towards
+
+Slices the path toward an subfolder.Example, I have a routeName `path` like this:
+`routeName: health/clients => ../server/data/health/clients`;
+Then, I want to get the path only to 'data'. So I do:
+`instance.towards('../server/data/health/clients', to: 'data')`
+So, I will get: `../server/data`
+
+**Paramaters**
+
+-   `{String} filepath`: the absolute path
+-   `{String} to`: the folder to be go after
+-   `{Boolean} strict=false`: if it is true, will compare as '==='; if false, will use Regexp with the flgas 'giu'
+
+**Return Values**
+
+-   `{String|undefined}`: string with path otherwise undefined
+
+```ts
+const route = new PathRoute();
+
+// it will returns '../server/data'
+route.towards('../server/data/health/clients', to: 'data')
+```
+
+## .hierarchy
+
+With this function you can get the hierarchy of folders from a absolute path, check over the example
+
+**Paramaters**
+
+-   `{String} routeName`: key name of the route
+
+**Return Values**
+
+-   `{Record<string, PathHierarchyContext>}`: data of hierarchy
+
+```ts
+export type PathHierarchyContext = {
+    path?: string;
+    index: number;
+    parent: string;
+    next: string;
+    current: string;
+};
+
+const route = new PathRoute();
+
+route.add('root', __dirname).hierarchy('root');
+```
+
+```json
+{
+    "D:": {
+        "path": "D:\\",
+        "index": 7,
+        "next": "Code",
+        "parent": "",
+        "current": "D:"
+    },
+    "Code": {
+        "path": "D:\\",
+        "index": 6,
+        "next": "@vorlefan",
+        "parent": "D:",
+        "current": "Code"
+    },
+    "@vorlefan": {
+        "path": "D:\\Code",
+        "index": 5,
+        "next": "@packages",
+        "parent": "Code",
+        "current": "@vorlefan"
+    },
+    "@packages": {
+        "path": "D:\\Code\\@vorlefan",
+        "index": 4,
+        "next": "path",
+        "parent": "@vorlefan",
+        "current": "@packages"
+    },
+    "path": {
+        "path": "D:\\Code\\@vorlefan\\@packages",
+        "index": 3,
+        "next": "src",
+        "parent": "@packages",
+        "current": "path"
+    },
+    "src": {
+        "path": "D:\\Code\\@vorlefan\\@packages\\path",
+        "index": 2,
+        "next": "__tests__",
+        "parent": "path",
+        "current": "src"
+    },
+    "__tests__": {
+        "path": "D:\\Code\\@vorlefan\\@packages\\path\\src",
+        "index": 1,
+        "next": "",
+        "parent": "src",
+        "current": "__tests__"
+    }
+}
+```
+
+## .files
+
+With this function you get all files from a route path.
+
+**Paramaters**
+
+-   `{String} routeName`: key name of the route
+-   `{String|undefined} extension`: filter the files by extension
+
+**Return Values**
+
+-   `{FilesDataContext[]}`: data of hierarchy
+
+```ts
+export type FilesDataContext = {
+    name: string;
+    filename: string;
+    filepath: string;
+    extension: string;
+    routeName: string;
+};
+
+const route = new PathRoute();
+
+await route.add('root', __dirname).files('root');
+// only json files or js files
+await route.add('root', __dirname).files('root', 'json|js');
+```
+
+## .lastFiles
+
+Same as `.files` however filters the list by sorting from the last modified file
+
+**Paramaters**
+
+-   `{String} routeName`: key name of the route
+-   `{String|undefined} extension`: filter the files by extension
+
+**Return Values**
+
+-   `{FilesDataContext[]}`: data of hierarchy
+
+```ts
+export type FilesDataContext = {
+    name: string;
+    filename: string;
+    filepath: string;
+    extension: string;
+    routeName: string;
+};
+
+const route = new PathRoute();
+
+await route.add('root', __dirname).lastFiles('root');
+// only json files or js files
+await route.add('root', __dirname).lastFiles('root', 'json|js');
+```
+
+## .allFilepaths
+
+returns all the filepaths from folder and subfolders
+
+**Paramaters**
+
+-   `{String} string`: absolute folderpath
+
+**Return Values**
+
+-   `{string[]}`: array with the paths
+
+```ts
+const route = new PathRoute();
+
+await route.allFilepaths(__dirname);
+```
+
+## .folders
+
+return all directories of the route
+
+**Paramaters**
+
+-   `{String} routeName`: the key name of the route
+
+**Return Values**
+
+-   `{FolderDataContext[]}`: array with the paths
+
+```ts
+export type FolderDataContext = {
+    name: string;
+    path: string;
+};
+
+const route = new PathRoute();
+
+route.add('root', __dirname).folders('root');
+```
+
+## .foldersJoin
+
+join the subfolder into a main folder, in ordered & structured mode.
+Check over the example
+
+**Paramaters**
+
+-   `{String} routeName`: the key name of the route
+
+**Return Values**
+
+-   `{this}`: the instance of the class
+
+```ts
+const route = new PathRoute();
+
+// if you have a folder 'src' and within have for instance folders like data and public:
+
+route.add('root', '../src').foldersJoin('root').routes();
+
+//  you shall have something like this: (route name, route path)
+// (root, ../src)
+// (root/data, ../src/data)
+// (root/public, ../src/public)
+
+// just access using the get
+route.get('root/data')?.routePath;
+```
+
+## .skip
+
+With this function you can add paths to be skipped when operating some methods as getting all filepaths from
+a folder source or just using the method `.hasSkipped`
+
+**Paramaters**
+
+-   `{RouteSkipContext[]}`: It is a array that each item must be a array that goes like this: [source: string, folder: string]
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+export type RouteSkipContext = [source: string, folder: string];
+
+const route = new PathRoute();
+route.skip([
+    ['absolute_folderpath/src', 'folder_to_be_ignored'],
+    ['../yourprojectfolder', 'node_modules'], // ignores node module folder
+]);
+```
+
+## .addSkip
+
+With this function you can add one path to be skipped when operating some methods as getting all filepaths from
+a folder source or just using the method `.hasSkipped`
+
+**Paramaters**
+
+-   `{String} source`: The source folder path
+-   `{String} folder`: the folder within of the source folder to be ignored
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+export type RouteSkipContext = [source: string, folder: string];
+
+const route = new PathRoute();
+route.addSkip('../yourprojectfolder', '.git');
+```
+
+## .hasSkip
+
+With this function you can check if you already have added a path to be skipped or not
+
+**Paramaters**
+
+-   `{String} source`: The source folder path
+-   `{String} folder`: the folder within of the source folder to be ignored
+
+**Return Values**
+
+-   `{Boolean}`:true if have the path otherwise false
+
+```ts
+export type RouteSkipContext = [source: string, folder: string];
+
+const route = new PathRoute();
+const hasSkip = route.hasSkip('../yourprojectfolder', '.git');
+```
+
+## .deleteSkip
+
+With this function you can delete a path in the skip list.
+
+**Paramaters**
+
+-   `{String} source`: The source folder path
+-   `{String} folder`: the folder within of the source folder to be ignored
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+export type RouteSkipContext = [source: string, folder: string];
+
+const route = new PathRoute();
+route.deleteSkip('../yourprojectfolder', '.git');
+```
+
+## .clearSkips
+
+With this function you can clear all paths to be skipped
+
+**Paramaters**
+
+**Return Values**
+
+-   `{this}`: Returns to the instance
+
+```ts
+const route = new PathRoute();
+route.clearSkips();
+```
+
+## .getSkips
+
+With this function you get all paths to be skipped in a array format
+
+**Paramaters**
+
+**Return Values**
+
+-   `{RouteSkipContext[]}`: Returns a array
+
+```ts
+export type RouteSkipContext = [source: string, folder: string];
+
+const route = new PathRoute();
+const skips = route.getSkips();
+```
+
+## .hasSkipped
+
+With this function you check if a folderpath has to be skipped or not
+
+**Paramaters**
+
+-   `{String} fpath`: Absolute folderpath to be checked
+
+**Return Values**
+
+-   `{boolean}`: true if has be to be skipped, otherwise false
+
+```ts
+const route = new PathRoute();
+const hasSkipped = route.hasSkipped('path_to_checked/src');
+```
+
+## .isFilepathSameSource
+
+With this function you check if a filepath is from the same source as other filepath
+
+**Paramaters**
+
+-   `{String} sourceFilepath`: Absolute folder path to be used as the source
+-   `{String} targetFilepath`: Absolute folder path to check over with the source path
+
+**Return Values**
+
+-   `{boolean}`: true if is from the same source, otherwise false
+
+```ts
+const route = new PathRoute();
+
+// true
+const isFilepathSameSource = route.isFilepathSameSource(
+    '../source',
+    '../source/data/project'
+);
+
+// false
+const isFilepathSameSource = route.isFilepathSameSource(
+    '../source',
+    '../projects/data/project'
+);
+```
+
+## .isRouteSameSource
+
+With this function you check if a route is from the same source as other the route
+
+**Paramaters**
+
+-   `{String} sourceRouteName`: key route name to be used as the source
+-   `{String} targetRouteName`: key route name to check over with the source path
+
+**Return Values**
+
+-   `{boolean}`: true if is from the same source, otherwise false
+
+```ts
+const route = new PathRoute();
+route
+    .add('source', '../source')
+    .add('other_source', '../projects')
+    .add('project', '../source/data/project');
+
+// true
+const isFilepathSameSource = route.isRouteSameSource('source', 'project');
+
+// false
+const isFilepathSameSource = route.isRouteSameSource('other_source', 'project');
+```
