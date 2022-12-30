@@ -26,9 +26,7 @@ const nextConfig = {
         formats: ['image/avif', 'image/webp'],
         
     }, 
-    serverRuntimeConfig: {
-        PROJECT_ROOT: __dirname
-    }
+   
 };
 
 
