@@ -1,12 +1,11 @@
 {
     "index": {
-        "title": "Home",
-        "hidden": false,
-        "theme": {
-            "layout": "raw"
-        }
+        "title": "Getting Started"
     },
-    "*": {
-        "type": "page"
+    "methods": {
+        "title": "API"
+    },
+    "example": {
+        "title": "Example"
     }
 }
